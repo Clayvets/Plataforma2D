@@ -7,23 +7,27 @@ namespace AnaNanita{
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        
+        float direccion = Input.GetAxisRaw("Horizontal");
+        float salto = Input.GetAxisRaw("Vertical");
+        
+        if (direccion != 0f)
         {
-            rb.velocity = new Vector2(10, rb.velocity.y);
+            rb.velocity = new Vector2( direccion * 10f , rb.velocity.y);
         }
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        
+        if (salto != 0f)
         {
-            rb.velocity = new Vector2(-10, rb.velocity.y);
+            rb.velocity = new Vector2( rb.velocity.x, salto * 10);
         }
+        
     }
+    
 }
 }
